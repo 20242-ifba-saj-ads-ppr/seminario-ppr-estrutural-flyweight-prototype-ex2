@@ -1,4 +1,4 @@
-public class VeiculoConcreto {
+public class VeiculoConcreto extends AbstractVeiculo {
     private final String placa;
     private final String chassi;
     private final String cor;
@@ -62,7 +62,7 @@ public class VeiculoConcreto {
     }
 
 
-    public float getDiaria() {
+    public float calculaPrecoDiaria() {
     
         float d = modeloFlyweight.getDiaria(quilometragem, ano);
         return d;

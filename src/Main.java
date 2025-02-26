@@ -6,7 +6,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        int interacoes = 1000000;
+        int interacoes = 5000000;
 
         List<String> marcas = Arrays.asList("Chevrolet", "Chevrolet", "VW", "Ford", "BYD");
         List<String> modelos = Arrays.asList("Tracker", "Onix", "Gol", "Ranger", "Seal");
@@ -33,7 +33,7 @@ public class Main {
 
         List<VeiculoConcreto> veiculos = new ArrayList<>();
 
-        System.out.println("Instanciando "+ interacoes +" veículos com flyweight");
+        System.out.println("Instanciando " + interacoes + " veículos com flyweight");
 
         for (int i = 0; i < interacoes; i++) {
             VeiculoConcreto v = new VeiculoConcreto(
@@ -53,12 +53,10 @@ public class Main {
         System.out.println();
         imprimirMemoria("Memoria com flyweight");
 
-
         veiculos = null;
         catalogo = null;
         System.gc();
         imprimirMemoria("Memoria após limpeza");
-
 
         System.out.println("Iniciando teste sem flyweight");
 
@@ -66,15 +64,15 @@ public class Main {
 
         for (int i = 0; i < interacoes; i++) {
             VeiculoCompleto v = new VeiculoCompleto(
+                    marcas.get(i % marcas.size()), // Marca
+                    modelos.get(i % modelos.size()), // Modelo
+                    i + descricao,
+                    60 + (10 * (i % 6)), // Preço Base
                     "ABC" + i, // Placa
                     "100" + i, // Chassi
                     cores.get(i % cores.size()), // Cor
                     1000 * (i % 80), // Quilometragem
-                    2025 - (i % 6), // Ano
-                    marcas.get(i % marcas.size()), // Marca
-                    modelos.get(i % modelos.size()), // Modelo
-                    i + descricao,
-                    60 + (10 * (i % 6)) // Preço Base
+                    2025 - (i % 6) // Ano
             );
 
             veiculosCompletos.add(v);

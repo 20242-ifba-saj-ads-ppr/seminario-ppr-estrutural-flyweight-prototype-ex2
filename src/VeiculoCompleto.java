@@ -1,26 +1,28 @@
 import java.time.Year;
 
-public class VeiculoCompleto {
-    private final String placa;
-    private final String chassi;
-    private final String cor;
-    private final int quilometragem;
-    private final int ano;
+public class VeiculoCompleto extends AbstractVeiculo {
     private final String marca;
     private final String modelo;
     private final String descricao;
     private final float precoBase;
 
-    public VeiculoCompleto(String placa, String chassi, String cor, int quilometragem, int ano, String marca, String modelo, String descricao, float precoBase) {
+    private final String placa;
+    private final String chassi;
+    private final String cor;
+    private final int quilometragem;
+    private final int ano;
+
+    public VeiculoCompleto(String marca, String modelo, String descricao, float precoBase, String placa, String chassi, String cor, int quilometragem, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.descricao = descricao;
+        this.precoBase = precoBase;
+
         this.placa = placa;
         this.chassi = chassi;
         this.cor = cor;
         this.quilometragem = quilometragem;
         this.ano = ano;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.descricao = descricao;
-        this.precoBase = precoBase;
     }
 
     public String getMarca() {
@@ -59,7 +61,8 @@ public class VeiculoCompleto {
         return ano;
     }
 
-    public float getDiaria() {
+    
+    public float calculaPrecoDiaria() {
         int idade = ano - Year.now().getValue();
         float fatorDepreciacao = 1 - (idade / 100.0f);
         float fatorQuilometragem = 1 - (quilometragem / 100000.0f);
